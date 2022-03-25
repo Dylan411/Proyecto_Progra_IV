@@ -20,7 +20,7 @@ class Software
         if ($filter == "") {
             return $conx->execute("select nombre,imagen,desarollador from software order by nombre");
         } else {
-            return $conx->execute("select nombre,imagen,desarollador from software where " . $filtro . " order by nombre asc");
+            return $conx->execute("select nombre,imagen,desarollador from software where " . $filter . " order by nombre asc");
         }
     }
 

@@ -6,22 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        function togglePopup() {
-            document.getElementById("popup-1")
-                .classList.toggle("active");
-        }
-    </script>
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="View/style.css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
     <title>Tiki Store</title>
 </head>
 
 <body>
+
     <div class="popup" id="popup-1">
         <div class="content">
             <div class="close-btn" onclick="togglePopup()">
@@ -111,8 +104,8 @@
             <div class="bottom-content">
                 <li class="">
                     <a href="#">
-                        <i onclick=" togglePopup()" class='bx bx-log-out icon'></i>
-                        <span onclick=" togglePopup()" class="text nav-text">Sign In</span>
+                        <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
+                        <span onclick="togglePopup()" class="text nav-text">Sign In</span>
                     </a>
                 </li>
 
@@ -136,17 +129,24 @@
     <section class="home">
         <div class="text">Tiki Store</div>
         <div class="gallery">
-        <?php
+            <?php
                 foreach ($showItemsIndex as $item) {
-                    //echo "<div class=" . "content" . ">";
-                    echo "<img class=" . "products" ." src=" . $item[1] . ">";
+                    echo "<div class='content'>";
+                    echo "<img class= 'products' src='" . $item[1] . "'>";
                     echo " <h3>" . $item[0] . "</h3>";
-                    echo "<button class=" . "download".">Download</button";
+                    echo "<button class='download'>Download</button>";
+                    echo "</div>";
                 }
             ?>
             </div>
         </div>
     </section>
-    <script src="script.js"></script>
 </body>
 </html>
+<script>
+  function togglePopup() {
+            document.getElementById("popup-1")
+                .classList.toggle("active");
+        }
+</script>
+

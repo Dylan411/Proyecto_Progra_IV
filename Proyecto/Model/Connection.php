@@ -1,5 +1,5 @@
 <?php
-    class Conexion {
+    class Connection {
         private $conx;
 
         public function __construct() {
@@ -7,7 +7,7 @@
         }
     
         public function execute(string $statement) {
-            $query = $this->conex->query($statement);
+            $query = $this->conx->query($statement);
             $result = [];
             $i = 0;
             while ($row = $query->fetch_array(MYSQLI_BOTH)) {
