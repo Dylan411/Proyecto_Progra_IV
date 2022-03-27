@@ -1,15 +1,15 @@
 <!--  -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="View/style.css">
+    <link  type="text/css" media="screen, projection " rel="stylesheet" href="/Proyecto/View/style.css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="script.js" ></script>
     <title>Tiki Store</title>
 </head>
 
@@ -57,7 +57,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="/Git/Proyecto/index.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -128,17 +128,13 @@
 
     <section class="home">
         <div class="text">Tiki Store</div>
-        <div class="gallery">
             <?php
-                foreach ($showItemsIndex as $item) {
-                    echo "<div class='content'>";
-                    echo "<img class= 'products' src='" . $item[1] . "'>";
-                    echo " <h3>" . $item[0] . "</h3>";
-                    echo "<button class='download'>Download</button>";
-                    echo "</div>";
-                }
+                echo "<div class='content'>";
+                echo "<img class= 'products' src='" . $data["software"]["imagen"] . "'>";
+                echo "<h3>" . $data["software"]["nombre"] . "</h3>";
+                echo "<button class='download'><a href='index.php?c=SoftwareController&a=showOneItem&id=" . $data["software"]["id"] . "'>Download</button>";
+                echo "</div>";
             ?>
-            </div>
         </div>
     </section>
 </body>
@@ -149,4 +145,3 @@
                 .classList.toggle("active");
         }
 </script>
-

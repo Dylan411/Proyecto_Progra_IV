@@ -450,7 +450,7 @@ p {
 /*style about products cards*/
 .gallery{
     position: relative;
-    display: inline-block;
+    display: flex;
     flex-wrap: wrap;
     width: 91%;
     justify-content: center;
@@ -481,8 +481,8 @@ p {
   }
 
   .content img {
-    width: 200px;
-    height: 200px;
+    width: 80%;
+    height: 80%;
     text-align: center;
     margin: 0 auto;
   }
@@ -490,16 +490,29 @@ p {
 
   .content button {
     text-align: center;
-    font-size: 24px;
+    font-size: 150%;
     width: 100%;
-    padding: 15px;
+    padding: 5%;
     border: 0px;
     outline: none;
     cursor: pointer;
     margin-top: 5px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+    
   }
+
+  .content h3{
+    text-decoration: none;
+    color: grey;
+  }
+
+  .download a {
+    text-decoration: none;
+  }
+
+  
+  /*scroll*/
 
   ::-webkit-scrollbar {
     width: 1vw; /* THIS WILL RESET THE DEFAULT SCORLLBAR STYLING */
