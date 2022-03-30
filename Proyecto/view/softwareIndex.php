@@ -13,33 +13,21 @@
 </head>
 
 <body>
-
-    <div class="popup" id="popup-1">
-        <div class="content">
-            <div class="close-btn" onclick="togglePopup()">
-                ×</div>
-            <h1>Sign in</h1>
-            <div class="input-field"><input placeholder="Email" class="validate"></div>
-            <div class="input-field"><input placeholder="Password" class="validate"></div>
-            <div class="input-field">
-                <select>
-                    <option>Admin</option>
-                    <option>User</option>
-                </select>
-                <i></i>
-            </div>
-            <button class="second-button">Sign in</button>
-            <p>Don't have an account? <a href="/signup.html">Sign Up</a></p>
-        </div>
-    </div>
-    <nav class="sidebar close">
+    <nav class="sidebar">
         <header>
             <div class="image-text">
                 <span class="image">
                     <img src="/Proyecto/Images/logo.png" alt="">
                 </span>
                 <div class="text logo-text">
-                    <span class="name">UserName</span>
+                    <span class="name"><?php 
+                    if(isset($_SESSION['nombreUsuario'])){
+                        echo $_SESSION['nombreUsuario'] ;
+                    }else{
+                        echo "Welcome";
+                    }
+                    
+                    ?> </span>
                 </div>
             </div>
 
@@ -56,7 +44,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="index.php">
+                        <a href="index.php?c=SoftwareController&a=index">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text" >Home</span>
                         </a>
@@ -102,7 +90,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="index.php?c=SoftwareController&a=showLogin">
                         <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
                         <span onclick="togglePopup()" class="text nav-text">Sign In</span>
                     </a>
@@ -142,10 +130,5 @@
     </section>
 </body>
 </html>
-<script>
-  function togglePopup() {
-            document.getElementById("popup-1")
-                .classList.toggle("active");
-        }
-</script>
+
 

@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!----======== CSS ======== -->
-    <link  type="text/css" media="screen, projection " rel="stylesheet" href="/Proyecto/View/style.css">
+    <link rel="stylesheet" href="View/style.css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <script src="script.js" ></script>
     <title>Tiki Store</title>
 </head>
 
@@ -21,14 +20,7 @@
                     <img src="/Proyecto/Images/logo.png" alt="">
                 </span>
                 <div class="text logo-text">
-                    <span class="name"><?php 
-                    if(isset($_SESSION['nombreUsuario'])){
-                        echo $_SESSION['nombreUsuario'] ;
-                    }else{
-                        echo "Welcome";
-                    }
-                    
-                    ?></span>
+                    <span class="name"><?php echo "Login" ?></span>
                 </div>
             </div>
 
@@ -45,9 +37,9 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="index.php?c=SoftwareController&a=index">
+                        <a href="index.php">
                             <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
+                            <span class="text nav-text" >Home</span>
                         </a>
                     </li>
 
@@ -82,7 +74,7 @@
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-wallet icon'></i>
-                            <span class="text nav-text">Wallets</span>
+                            <span class="text nav-text">Walles</span>
                         </a>
                     </li>
 
@@ -91,9 +83,9 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="index.php?c=UserController&a=showLogin">
-                        <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
-                        <span onclick="togglePopup()" class="text nav-text">Sign In</span>
+                    <a href="login.php">
+                        <i  class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Sign In</span>
                     </a>
                 </li>
 
@@ -116,14 +108,19 @@
 
     <section class="home">
         <div class="text">Tiki Store</div>
-            <?php
-                echo "<div class='content'>";
-                echo "<img class= 'products' src='" . $data["software"]["imagen"] . "'>";
-                echo "<h3>" . $data["software"]["nombre"] . "</h3>";
-                echo "<button class='download'><a href='index.php?c=SoftwareController&a=showOneItem&id=" . $data["software"]["id"] . "'>Download</button>";
-                echo "</div>";
-            ?>
-        </div>
+        <form action="index.php?c=SoftwareController&a=index" method="POST">
+        <?php
+            if(isset($errorLogin)){
+                echo $errorLogin;
+            }
+        ?>
+        <h2>Iniciar sesión</h2>
+        <p>Nombre de usuario: <br>
+        <input type="text" name="username"></p>
+        <p>Password: <br>
+        <input type="password" name="password"></p>
+        <p class="center"><input type="submit" value="Iniciar Sesión"></p>
+    </form>
     </section>
 </body>
 </html>

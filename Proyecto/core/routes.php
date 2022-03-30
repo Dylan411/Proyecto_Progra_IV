@@ -7,7 +7,7 @@
 		
 		if(!is_file($fileController)){
 			
-			$fileController= 'controller/'.PRINCIPAL_CONTROLLER.'.php';
+			$fileController= 'controller/'.$nameController.'.php';
 			
 		}
 		require_once $fileController;
@@ -19,18 +19,13 @@
 		echo $action;
 		
 		if(isset($action) && method_exists($controller, $action)){
-			echo "funko";
 			if($id == null){
 				$controller->$action();
-				echo "funko2";
 				}else {
 				$controller->$action($id);
-				echo "funko3";
 			}
-		}else{
-			echo "no funko " ;	
+		}else{	
 			$controller->PRINCIPAL_ACTION();
-			echo $controller;
 		}	
 	}
 ?>
