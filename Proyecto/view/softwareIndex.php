@@ -73,7 +73,7 @@
                             echo '</li>';
                         }
                     }else{
-                        $$result["test"]["tipoUsuario"] = "";
+                        $result["test"]["tipoUsuario"] = "";
                     }
                     ?>
                 </ul>

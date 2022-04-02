@@ -24,9 +24,7 @@
 			} else {
 				loadAction($controller, $typeController);
 			}
-	
 	} else {	
-		
 		$controller = loadController($typeController);
 		$accionTmp = "index";
 		$controller->$accionTmp();
