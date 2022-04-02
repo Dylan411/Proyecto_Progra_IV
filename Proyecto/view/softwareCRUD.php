@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!----======== CSS ======== -->
-    <link  type="text/css" media="screen, projection " rel="stylesheet" href="/Proyecto/View/style.css">
+    <link rel="stylesheet" href="View/style.css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <script src="script.js" ></script>
     <title>Tiki Store</title>
 </head>
 
@@ -23,12 +22,11 @@
                 <div class="text logo-text">
                     <span class="name"><?php 
                     if(isset($_SESSION['nombreUsuario'])){
-                        echo $_SESSION['nombreUsuario'] ;
+                        echo $_SESSION['nombreUsuario'];
                     }else{
                         echo "Welcome";
                     }
-                    
-                    ?></span>
+                    ?> </span>
                 </div>
             </div>
 
@@ -118,14 +116,7 @@
 
     <section class="home">
         <div class="text">Tiki Store</div>
-            <?php
-                echo "<div class='content'>";
-                echo "<img class= 'products' src='" . $data["software"]["imagen"] . "'>";
-                echo "<h3>" . $data["software"]["nombre"] . "</h3>";
-                echo "<button class='download'><a href='index.php?c=SoftwareController&a=showOneItem&id=" . $data["software"]["id"] . "'>Download</button>";
-                echo "</div>";
-            ?>
-        </div>
+        
     </section>
 </body>
 </html>

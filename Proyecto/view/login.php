@@ -53,13 +53,13 @@
                     if(isset($_SESSION['nombreUsuario'])){
                         if ($result["test"]["tipoUsuario"] == 'Admin') {
                             echo '<li class="nav-link">';
-                            echo '<a href="#">';
+                            echo '<a href="index.php?c=SoftwareController&a=softwareCRUD">';
                             echo "<i class='bx bx-data icon'></i>";
                             echo '<span class="text nav-text">Software</span>';
                             echo '</a>';
                             echo '</li>';
                             echo '<li class="nav-link">';
-                            echo '<a href="#">';
+                            echo '<a href="index.php?c=SoftwareController&a=userCRUD">';
                             echo "<i class='bx bx-user-check icon'></i>";
                             echo '<span class="text nav-text">User</span>';
                             echo '</a>';

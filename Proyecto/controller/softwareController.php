@@ -31,6 +31,16 @@ include_once "controller/userController.php";
 			require_once "view/login.php";	
 		}
 
+		public function softwareCRUD(){
+			$this->view = "showSoftwareCRUD";
+			$this->checkLogin($id);
+		}
+
+		public function userCRUD(){
+			$this->view = "showUserCRUD";
+			$this->checkLogin($id);
+		}
+
 		public function checkLogin($id){
 			try {
 				$software = new software();
@@ -49,6 +59,16 @@ include_once "controller/userController.php";
 						$result["test"] = "";
 						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
 						require_once "view/software.php";
+					}
+					if ($this->view == "showSoftwareCRUD") {
+						$result["test"] = "";
+						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
+						require_once "view/softwareCRUD.php";
+					}
+					if ($this->view == "showUserCRUD") {
+						$result["test"] = "";
+						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
+						require_once "view/userCRUD.php";
 					}
 				}else if(isset($_POST['username']) && isset($_POST['password'])){
 					$userForm = $_POST['username'];
