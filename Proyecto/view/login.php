@@ -37,7 +37,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="index.php">
+                        <a href="index.php?c=SoftwareController&a=index">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text" >Home</span>
                         </a>
@@ -45,47 +45,49 @@
 
                     <li class="nav-link">
                         <a href="#">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Revenue</span>
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">My Acccount</span>
                         </a>
                     </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Notifications</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-pie-chart-alt icon'></i>
-                            <span class="text nav-text">Analytics</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Likes</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-wallet icon'></i>
-                            <span class="text nav-text">Walles</span>
-                        </a>
-                    </li>
-
+                    <?php 
+                    if(isset($_SESSION['nombreUsuario'])){
+                        if ($result["test"]["tipoUsuario"] == 'Admin') {
+                            echo '<li class="nav-link">';
+                            echo '<a href="#">';
+                            echo "<i class='bx bx-data icon'></i>";
+                            echo '<span class="text nav-text">Software</span>';
+                            echo '</a>';
+                            echo '</li>';
+                            echo '<li class="nav-link">';
+                            echo '<a href="#">';
+                            echo "<i class='bx bx-user-check icon'></i>";
+                            echo '<span class="text nav-text">User</span>';
+                            echo '</a>';
+                            echo '</li>';
+                        }
+                    }else{
+                        $result["test"]["tipoUsuario"] = "";
+                    }
+                    ?>
                 </ul>
             </div>
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="login.php">
-                        <i  class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Sign In</span>
+                <?php 
+                    $status = "";
+                    if(isset($_SESSION['nombreUsuario'])){
+                        $status = "Log Out";
+                        $function = "logout";
+                    }else{
+                        $status = "Sign In";
+                        $function = "showLogin";
+                    }
+                    
+                    ?>
+                    <a href= <?php echo "index.php?c=SoftwareController&a=" . $function ?> >
+                        <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
+                        <span onclick="togglePopup()" class="text nav-text"><?php echo $status;?></span>
                     </a>
                 </li>
 

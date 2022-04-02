@@ -9,8 +9,6 @@
 	if(isset($_GET['c'])){
 		if($_GET['c'] == "SoftwareController"){
 			$typeController = "SoftwareController";
-		}elseif($_GET['c'] == "UserController"){
-			$typeController = "UserController";
 		}else{
 			$typeController = "";
 		}

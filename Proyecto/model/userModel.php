@@ -7,11 +7,6 @@ class User{
     public function __construct(){
         $this->db = Connection::conx();
     }
-
-    public function getError(){
-        return $this->error;
-    }
-	
 	
     public function userExists($user,$pass){
         try {
@@ -28,13 +23,11 @@ class User{
         
     }
 
-    public function setUser($user){
+    public function getType($user){
         try {
-            $query = $this->db->query("SELECT * FROM usuarios WHERE nombreUsuario= '$user'");
-            
-            foreach ($query as $currentUser) {
-                $this->username = $currentUser['nombreUsuario'];
-            }
+            $query = $this->db->query("SELECT tipoUsuario FROM usuarios WHERE nombreUsuario= '$user'");
+            $result = $query->fetch_assoc();
+            return $result;
         } catch (Exception $th) {
             echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
         }
