@@ -22,11 +22,10 @@
                 <div class="text logo-text">
                     <span class="name"><?php 
                     if(isset($_SESSION['nombreUsuario'])){
-                        echo $_SESSION['nombreUsuario'] ;
+                        echo $_SESSION['nombreUsuario'];
                     }else{
                         echo "Welcome";
                     }
-                    
                     ?> </span>
                 </div>
             </div>

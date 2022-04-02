@@ -1,6 +1,8 @@
 <?php
 include_once "controller/userController.php";
     class SoftwareController {
+
+		private $view;
 		
 		public function __construct(){
 			require_once "model/softwareModel.php";
@@ -8,13 +10,8 @@ include_once "controller/userController.php";
 		}
 		
 		public function index(){
-			$userModel = new User();
-			$software = new software();
-			$data["software"] = $software->getSoftware();
-			$this->checkLogin();
-			$result["test"] = "";
-			$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
-			require_once "view/softwareIndex.php";	
+			$this->view = "index";
+			$this->checkLogin($id);
 		}
 
 		public function logout(){
@@ -26,33 +23,42 @@ include_once "controller/userController.php";
 		}
 		
 		public function showOneItem($id){
-			$userModel = new User();
-			$software = new software();
-			$data["software"] = $software->getSoftwareId($id);
-			$this->checkLogin();
-			$result["test"] = "";
-			$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
-			require_once "view/software.php";
+			$this->view = "showOneItem";
+			$this->checkLogin($id);
 		}
 
 		public function showLogin(){
 			require_once "view/login.php";	
 		}
 
-		public function checkLogin(){
+		public function checkLogin($id){
 			try {
 				$software = new software();
 				$userController = new UserController();
 				$userModel = new User();
 
 				if(isset($_SESSION['nombreUsuario'])){
-					echo "<script>console.log( 'hay sesion' );</script>";
+					if ($this->view == "index") {
+						$data["software"] = $software->getSoftware();
+						$result["test"] = "";
+						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
+						require_once "view/softwareIndex.php";
+					}
+					if ($this->view == "showOneItem") {
+						$data["software"] = $software->getSoftwareId($id);
+						$result["test"] = "";
+						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
+						require_once "view/software.php";
+					}
 				}else if(isset($_POST['username']) && isset($_POST['password'])){
 					$userForm = $_POST['username'];
 					$passForm = $_POST['password'];
 					if($userModel->userExists($userForm, $passForm)){
 						$userController->setCurrentUser($userForm);
-						
+						$data["software"] = $software->getSoftware();
+						$result["test"] = "";
+						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
+						require_once "view/softwareIndex.php";
 					}else{
 						$errorLogin = 'Nombre de usuario y/o password incorrecto';
 						require_once "view/login.php";
