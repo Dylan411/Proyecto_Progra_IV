@@ -1,5 +1,4 @@
 <?php
-include_once "controller/userController.php";
     class SoftwareController {
 
 		private $view;
@@ -7,6 +6,7 @@ include_once "controller/userController.php";
 		public function __construct(){
 			require_once "model/softwareModel.php";
 			require_once "model/UserModel.php";
+			require_once "controller/userController.php";
 		}
 		
 		public function index(){
@@ -14,12 +14,11 @@ include_once "controller/userController.php";
 			$this->checkLogin($id);
 		}
 
-		public function logout(){
+		public function logout(){	
 			$userController = new UserController();
 			$userController->closeSession();
-			$software = new software();
-			$data["software"] = $software->getSoftware();
-			require_once "view/softwareIndex.php";
+			$this->view = "logout";
+			$this->checkLogin($id);
 		}
 		
 		public function showOneItem($id){
@@ -41,36 +40,47 @@ include_once "controller/userController.php";
 			$this->checkLogin($id);
 		}
 
+		public function showView($id){
+			$software = new software();
+			$userModel = new User();
+			$userController = new UserController();
+			
+			$result["test"] = "";
+			$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
+
+			switch ($this->view) {
+				case 'index':
+					$data["software"] = $software->getSoftware();
+					require_once "view/softwareIndex.php";
+					break;
+				case 'showOneItem':
+					$data["software"] = $software->getSoftwareId($id);
+					require_once "view/software.php";
+					break;
+				
+				case 'showSoftwareCRUD':
+					require_once "view/softwareCRUD.php";
+					break;
+
+				case 'showUserCRUD':
+					require_once "view/userCRUD.php";
+					break;
+					
+				case 'logout':
+					$data["software"] = $software->getSoftware();
+					require_once "view/softwareIndex.php";
+					break;
+
+				default:
+					# code...
+					break;
+			}
+		}
 		public function checkLogin($id){
 			try {
-				$software = new software();
-				$userController = new UserController();
-				$userModel = new User();
-
 				if(isset($_SESSION['nombreUsuario'])){
-					if ($this->view == "index") {
-						$data["software"] = $software->getSoftware();
-						$result["test"] = "";
-						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
-						require_once "view/softwareIndex.php";
-					}
-					if ($this->view == "showOneItem") {
-						$data["software"] = $software->getSoftwareId($id);
-						$result["test"] = "";
-						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
-						require_once "view/software.php";
-					}
-					if ($this->view == "showSoftwareCRUD") {
-						$result["test"] = "";
-						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
-						require_once "view/softwareCRUD.php";
-					}
-					if ($this->view == "showUserCRUD") {
-						$result["test"] = "";
-						$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
-						require_once "view/userCRUD.php";
-					}
-				}else if(isset($_POST['username']) && isset($_POST['password'])){
+					$this->showView($id);
+				}elseif(isset($_POST['username']) && isset($_POST['password'])){
 					$userForm = $_POST['username'];
 					$passForm = $_POST['password'];
 					if($userModel->userExists($userForm, $passForm)){
@@ -84,7 +94,7 @@ include_once "controller/userController.php";
 						require_once "view/login.php";
 					}
 				}else{
-					require_once "view/login.php";
+					$this->showView($id);
 				}
 			} catch (Exception $th) {
 				echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
