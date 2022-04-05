@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type = "text/javascript" src="view/script.js"></script>
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="View/style.css">
+    <link rel="stylesheet" href="view/style.css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Tiki Store</title>
@@ -24,7 +25,9 @@
                 </div>
             </div>
 
-            <i class='bx bx-chevron-right toggle'></i>
+            <i class='bx bx-chevron-right toggle'>
+                <script>side()</script>
+            </i>
         </header>
 
         <div class="menu-bar">
@@ -49,8 +52,8 @@
                             <span class="text nav-text">My Acccount</span>
                         </a>
                     </li>
-                    <?php 
-                    if(isset($_SESSION['nombreUsuario'])){
+                    <?php
+                        if (isset($_SESSION['nombreUsuario'])) {
                         if ($result["test"]["tipoUsuario"] == 'Admin') {
                             echo '<li class="nav-link">';
                             echo '<a href="index.php?c=SoftwareController&a=softwareCRUD">';
@@ -65,29 +68,29 @@
                             echo '</a>';
                             echo '</li>';
                         }
-                    }else{
-                        $result["test"]["tipoUsuario"] = "";
-                    }
+                        }else {
+                            $result["test"]["tipoUsuario"] = "";
+                        }
                     ?>
                 </ul>
             </div>
 
             <div class="bottom-content">
                 <li class="">
-                <?php 
+                <?php
                     $status = "";
-                    if(isset($_SESSION['nombreUsuario'])){
+                    if (isset($_SESSION['nombreUsuario'])) {
                         $status = "Log Out";
                         $function = "logout";
-                    }else{
+                    }else {
                         $status = "Sign In";
                         $function = "showLogin";
                     }
-                    
-                    ?>
+
+                ?>
                     <a href= <?php echo "index.php?c=SoftwareController&a=" . $function ?> >
                         <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
-                        <span onclick="togglePopup()" class="text nav-text"><?php echo $status;?></span>
+                        <span onclick="togglePopup()" class="text nav-text"><?php echo $status; ?></span>
                     </a>
                 </li>
 
@@ -99,7 +102,9 @@
                     <span class="mode-text text">Dark mode</span>
 
                     <div class="toggle-switch">
-                        <span class="switch"></span>
+                    <span  class="switch">
+                            <script>mode()</script>
+                        </span>
                     </div>
                 </li>
 
@@ -108,21 +113,63 @@
 
     </nav>
 
-    <section class="home">
-        <div class="text">Tiki Store</div>
-        <form action="index.php?c=SoftwareController&a=index" method="POST">
-        <?php
-            if(isset($errorLogin)){
-                echo $errorLogin;
-            }
-        ?>
-        <h2>Iniciar sesión</h2>
-        <p>Nombre de usuario: <br>
-        <input type="text" name="username"></p>
-        <p>Password: <br>
-        <input type="password" name="password"></p>
-        <p class="center"><input type="submit" value="Iniciar Sesión"></p>
-    </form>
-    </section>
+    <div class="homeLogin">
+        <div class="wrapper">
+            <div class="title-text">
+            <div class="title login">Login Form</div>
+            <div class="title signup">Signup Form</div>
+        </div>
+        <div class="form-container">
+        <div class="slide-controls">
+          <input type="radio" name="slide" id="login" checked>
+          <input type="radio" name="slide" id="signup">
+          <label onclick="login()" for="login" class="slide login">Login</label>
+          <label for="signup" class="slide signup">Signup</label>
+          <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+          <form action="index.php?c=SoftwareController&a=index" method="POST" class="login">
+            <div class="field">
+              <input type="text"name="username" placeholder="Username" required>
+            </div>
+            <div class="field">
+              <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <?php
+                if (isset($errorLogin)) {
+                    echo $errorLogin;
+                }
+            ?>
+            <div class="pass-link"><a href="#">Forgot password?</a></div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Login">
+            </div>
+            <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+          </form>
+          
+          <form action="#" class="signup">
+          <div class="field">
+              <input type="text" placeholder="Username" required>
+            </div>
+            <div class="field">
+              <input type="text" placeholder="Email Address" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Password" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Confirm password" required>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Signup">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    </div>
 </body>
 </html>

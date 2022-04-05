@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type = "text/javascript" src="view/script.js"></script>
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="View/style.css">
+    <link rel="stylesheet" href="view/style.css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Tiki Store</title>
@@ -30,7 +31,9 @@
                 </div>
             </div>
 
-            <i class='bx bx-chevron-right toggle'></i>
+            <i class='bx bx-chevron-right toggle'>
+                <script>side()</script>
+            </i>
         </header>
 
         <div class="menu-bar">
@@ -89,7 +92,6 @@
                         $status = "Sign In";
                         $function = "showLogin";
                     }
-                    
                     ?>
                     <a href= <?php echo "index.php?c=SoftwareController&a=" . $function ?> >
                         <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
@@ -102,10 +104,12 @@
                         <i class='bx bx-moon icon moon'></i>
                         <i class='bx bx-sun icon sun'></i>
                     </div>
-                    <span class="mode-text text">Dark mode</span>
-
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
+                    <span class="mode-text text">Dark mode
+                    </span>
+                    <div  class="toggle-switch" >
+                        <span  class="switch">
+                            <script>mode()</script>
+                        </span>
                     </div>
                 </li>
 

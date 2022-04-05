@@ -285,15 +285,29 @@ body.dark .switch::before{
 
 .home{
     position: absolute;
-    top: 0;
-    top: 0;
+    top: 50;
     left: 250px;
     height: auto;
     width: calc(100% - 250px);
     background-color: var(--body-color);
     transition: var(--tran-05);
 }
+.homeLogin{
+    position: absolute;
+    top: 50;
+    left: 50%;
+    height: auto;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
 .home .text{
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 12px 60px;
+}
+.homeLogin .text{
     font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
@@ -309,14 +323,23 @@ body.dark .home .text{
     color: var(--text-color);
 }
 
+.sidebar.close ~ .homeLogin{
+    left: 78px;
+    height: auto;
+    width: calc(100% - 78px);
+}
+body.dark .homeLogin .text{
+    color: var(--text-color);
+}
+
 /*style about products cards*/
 .gallery{
     position: relative;
-    display: flex;
+    display: inline-table;
     flex-wrap: wrap;
     width: 91%;
     justify-content: center;
-    align-items: flex-end;
+    align-items: stretch;
     margin-left: 1%;
     left: 8%;
     }
@@ -352,7 +375,7 @@ body.dark .home .text{
 
   .content button {
     text-align: center;
-    font-size: 150%;
+    font-size: 130%;
     width: 100%;
     padding: 5%;
     border: 0px;
@@ -391,7 +414,179 @@ body.dark .home .text{
     border: 0.3vw solid var(--body-color);
     border-radius: 5vw;
   }
+  /*login*/
 
+  .homeLogin{
+      width: 50%;
+      height: 50%;
+      left: 45%;
+      top: 18%;
+  }
   
+.homeLogin .wrapper{
+    overflow: hidden;
+    max-width: 390px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+  }
+.homeLogin .wrapper .title-text{
+    display: flex;
+    width: 200%;
+  }
+  .homeLogin .wrapper .title{
+    width: 50%;
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+  }
+  .homeLogin .wrapper .slide-controls{
+    position: relative;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    overflow: hidden;
+    margin: 30px 0 10px 0;
+    justify-content: space-between;
+    border: 1px solid lightgrey;
+    border-radius: 15px;
+  }
+  .homeLogin .slide-controls .slide{
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 48px;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.6s ease;
+  }
+  .homeLogin .slide-controls label.signup{
+    color: #000;
+  }
+  .homeLogin .slide-controls .slider-tab{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    left: 0;
+    z-index: 0;
+    border-radius: 15px;
+    background: -webkit-linear-gradient(left,#003366,#004080,#0059b3
+  , #0073e6);
+    transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+  }
+  .homeLogin input[type="radio"]{
+    display: none;
+  }
+  .homeLogin #signup:checked ~ .slider-tab{
+    left: 50%;
+  }
+  .homeLogin #signup:checked ~ label.signup{
+    color: #fff;
+    cursor: default;
+    user-select: none;
+  }
+  .homeLogin #signup:checked ~ label.login{
+    color: #000;
+  }
+  .homeLogin #login:checked ~ label.signup{
+    color: #000;
+  }
+  .homeLogin #login:checked ~ label.login{
+    cursor: default;
+    user-select: none;
+  }
+  .homeLogin  .wrapper .form-container{
+    width: 100%;
+    overflow: hidden;
+  }
+  .homeLogin .form-container .form-inner{
+    display: flex;
+    width: 200%;
+  }
+  .homeLogin .form-container .form-inner form{
+    width: 50%;
+    transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+  }
+  .homeLogin .form-inner form .field{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .homeLogin .form-inner form .field input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 15px;
+    border: 1px solid lightgrey;
+    border-bottom-width: 2px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+  }
+  .homeLogin .form-inner form .field input:focus{
+    border-color: #1a75ff;
+    /* box-shadow: inset 0 0 3px #fb6aae; */
+  }
+  .homeLogin .form-inner form .field input::placeholder{
+    color: #999;
+    transition: all 0.3s ease;
+  }
+  .homeLogin form .field input:focus::placeholder{
+    color: #1a75ff;
+  }
+  .homeLogin .form-inner form .pass-link{
+    margin-top: 5px;
+  }
+  .homeLogin .form-inner form .signup-link{
+    text-align: center;
+    margin-top: 30px;
+  }
+  .homeLogin .form-inner form .pass-link a,
+  .homeLogin .form-inner form .signup-link a{
+    color: #1a75ff;
+    text-decoration: none;
+  }
+  .homeLogin .form-inner form .pass-link a:hover,
+  .homeLogin .form-inner form .signup-link a:hover{
+    text-decoration: underline;
+  }
+  .homeLogin form .btn{
+    height: 50px;
+    width: 100%;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+  }
+  .homeLogin form .btn .btn-layer{
+    height: 100%;
+    width: 300%;
+    position: absolute;
+    left: -100%;
+    background: -webkit-linear-gradient(right,#003366,#004080,#0059b3
+  , #0073e6);
+    border-radius: 15px;
+    transition: all 0.4s ease;;
+  }
+  .homeLogin form .btn:hover .btn-layer{
+    left: 0;
+  }
+  .homeLogin form .btn input[type="submit"]{
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+    background: none;
+    border: none;
+    color: #fff;
+    padding-left: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+  }
   
-

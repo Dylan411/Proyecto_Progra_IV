@@ -20,7 +20,6 @@ class User{
             
             echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
         }
-        
     }
 
     public function getType($user){
@@ -28,6 +27,15 @@ class User{
             $query = $this->db->query("SELECT tipoUsuario FROM usuarios WHERE nombreUsuario= '$user'");
             $result = $query->fetch_assoc();
             return $result;
+        } catch (Exception $th) {
+            echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
+        }
+    }
+
+    public function signUp($user,$email,$password){
+        try {
+            $query = $this->db->query("INSERT INTO tipoUsuario (nombreUsuario,contrasenia,email,tipoUsuario)
+            VALUES ('$user','$email','$password','User')");
         } catch (Exception $th) {
             echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
         }

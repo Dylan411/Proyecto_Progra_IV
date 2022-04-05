@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="View/style.css">
+    <link rel="stylesheet" href="view/style.css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Tiki Store</title>
@@ -30,7 +30,9 @@
                 </div>
             </div>
 
-            <i class='bx bx-chevron-right toggle'></i>
+            <i class='bx bx-chevron-right toggle'>
+                <script>side()</script>
+            </i>
         </header>
 
         <div class="menu-bar">
@@ -105,7 +107,9 @@
                     <span class="mode-text text">Dark mode</span>
 
                     <div class="toggle-switch">
-                        <span class="switch"></span>
+                    <span  class="switch">
+                            <script>mode()</script>
+                        </span>
                     </div>
                 </li>
 

@@ -11,6 +11,7 @@
 		
 		public function index(){
 			$this->view = "index";
+			$id= '-1';
 			$this->checkLogin($id);
 		}
 
@@ -77,6 +78,9 @@
 			}
 		}
 		public function checkLogin($id){
+			$userModel = new User();
+			$userController = new UserController();
+			$software = new software();
 			try {
 				if(isset($_SESSION['nombreUsuario'])){
 					$this->showView($id);
