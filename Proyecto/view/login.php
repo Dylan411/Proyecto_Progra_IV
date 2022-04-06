@@ -119,48 +119,53 @@
             <div class="title login">Login Form</div>
             <div class="title signup">Signup Form</div>
         </div>
-        <div class="form-container">
-        <div class="slide-controls">
-          <input type="radio" name="slide" id="login" checked>
-          <input type="radio" name="slide" id="signup">
-          <label onclick="login()" for="login" class="slide login">Login</label>
-          <label for="signup" class="slide signup">Signup</label>
-          <div class="slider-tab"></div>
+        <div  class="form-container">
+            <div class="slide-controls">
+            <input  type="radio" name="slide" id="login" checked>
+            <input  type="radio" name="slide" id="signup">
+            <label  for="login" class="slide login" onclick = "login()">Login</label>
+            <label  for="signup" class="slide signup"  >Signup</label>
+            <div class="slider-tab"></div>
         </div>
         <div class="form-inner">
           <form action="index.php?c=SoftwareController&a=index" method="POST" class="login">
-            <div class="field">
-              <input type="text"name="username" placeholder="Username" required>
-            </div>
-            <div class="field">
-              <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <?php
-                if (isset($errorLogin)) {
-                    echo $errorLogin;
-                }
-            ?>
-            <div class="pass-link"><a href="#">Forgot password?</a></div>
-            <div class="field btn">
-              <div class="btn-layer"></div>
-              <input type="submit" value="Login">
-            </div>
-            <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+                <div class="field">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="field">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <?php
+                    if (isset($errorLogin)) {
+                        echo $errorLogin;
+                    }
+                ?>
+                <div class="pass-link"><a href="#">Forgot password?</a></div>
+                <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="Login">
+                </div>
+                <div class="signup-link">Not a member? <a onclick = "login()">Signup now</a></div>
           </form>
           
-          <form action="#" class="signup">
+          <form action="index.php?c=SoftwareController&a=signup" method="POST" class="login">
           <div class="field">
-              <input type="text" placeholder="Username" required>
+              <input type="text" name="userName" placeholder="Username" required>
             </div>
             <div class="field">
-              <input type="text" placeholder="Email Address" required>
+              <input type="text" name="email" placeholder="Email Address" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
             </div>
             <div class="field">
-              <input type="password" placeholder="Password" required>
+              <input type="password" name="pass1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
             </div>
             <div class="field">
-              <input type="password" placeholder="Confirm password" required>
+              <input type="password" name="pass2" placeholder="Confirm password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
             </div>
+            <?php
+                    if (isset($errorSignup)) {
+                        echo $errorSignup;
+                    }
+                ?>
             <div class="field btn">
               <div class="btn-layer"></div>
               <input type="submit" value="Signup">

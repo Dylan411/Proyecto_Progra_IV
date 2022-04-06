@@ -87,7 +87,7 @@
 				}elseif(isset($_POST['username']) && isset($_POST['password'])){
 					$userForm = $_POST['username'];
 					$passForm = $_POST['password'];
-					if($userModel->userExists($userForm, $passForm)){
+					if($userModel->userExistsLogin($userForm, $passForm)){
 						$userController->setCurrentUser($userForm);
 						$data["software"] = $software->getSoftware();
 						$result["test"] = "";
@@ -102,6 +102,42 @@
 				}
 			} catch (Exception $th) {
 				echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
+			}
+		}
+
+		public function signup(){
+			$userModel = new User();
+			$software = new software();
+			$userController = new UserController();
+			$userForm = $_POST['userName'];
+			$emailForm = $_POST['email'];
+			$pass1Form = $_POST['pass1'];
+			$pass2Form = $_POST['pass2'];
+			if($userModel->userExistsSignup($userForm)){
+				$errorSignup = 'Nombre de usuario ya existe';
+				require_once "view/login.php";
+				echo '<script type="text/javascript"> document.querySelector("form.login").style.marginLeft = "-50%"; </script>';
+				echo '<script type="text/javascript"> document.querySelector(".title-text .login").style.marginLeft = "-50%"; </script>';
+				echo '<script type="text/javascript"> document.querySelector("label.signup").click(); </script>';
+			}else if ($userModel->emailExistsSignup($emailForm)) {
+				$errorSignup = 'Email ya existe';
+				require_once "view/login.php";
+				echo '<script type="text/javascript"> document.querySelector("form.login").style.marginLeft = "-50%"; </script>';
+				echo '<script type="text/javascript"> document.querySelector(".title-text .login").style.marginLeft = "-50%"; </script>';
+				echo '<script type="text/javascript"> document.querySelector("label.signup").click(); </script>';
+			}elseif ($pass1Form <> $pass2Form) {
+				$errorSignup = 'Contraseñas no coinciden';
+				require_once "view/login.php";
+				echo '<script type="text/javascript"> document.querySelector("form.login").style.marginLeft = "-50%"; </script>';
+				echo '<script type="text/javascript"> document.querySelector(".title-text .login").style.marginLeft = "-50%"; </script>';
+				echo '<script type="text/javascript"> document.querySelector("label.signup").click(); </script>';
+			}else{
+				$userModel->insertUser($userForm,$emailForm,$pass1Form);
+				$userController->setCurrentUser($userForm);
+				$data["software"] = $software->getSoftware();
+				$result["test"] = "";
+				$result["test"] = $userModel->getType($_SESSION['nombreUsuario']);
+				require_once "view/softwareIndex.php";
 			}
 		}
 	}
