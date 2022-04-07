@@ -41,7 +41,16 @@
 
                 <li class="search-box">
                     <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
+                    <input id = "search" type="text"  placeholder="Search...">
+                    <script>
+                            var input = document.getElementById('search');
+                            input.addEventListener('keyup', function(event) {
+                            if (event.keyCode === 13) {
+                                event.preventDefault();
+                                window.location = "index.php?c=SoftwareController&a=searchSoftware&id=" + input.value;
+                            }
+                            });
+                        </script>
                 </li>
 
                 <ul class="menu-links">

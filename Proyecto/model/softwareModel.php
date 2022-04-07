@@ -17,6 +17,15 @@ class Software
 		}
 		return $this->software;
 	}
+
+	public function searchSoftware($name){
+		$sql = "SELECT * FROM software WHERE nombre like '$name'";
+		$result = $this->db->query($sql);
+		while($row = $result->fetch_assoc()){
+			$this->software[] = $row;
+		}
+		return $this->software;
+	}
 		
 	public function getSoftwareId($id){
 			$sql = "SELECT * FROM software WHERE id='$id'";

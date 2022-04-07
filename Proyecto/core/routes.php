@@ -17,6 +17,7 @@
 	
 	function loadAction($controller, $action, $id = null){
 		echo $action;
+		echo $id;
 		
 		if(isset($action) && method_exists($controller, $action)){
 			if($id == null){

@@ -2,6 +2,7 @@
     class SoftwareController {
 
 		private $view;
+		private $flag;
 		
 		public function __construct(){
 			require_once "model/softwareModel.php";
@@ -11,6 +12,7 @@
 		
 		public function index(){
 			$this->view = "index";
+			$this->flag = "all";
 			$id= '-1';
 			$this->checkLogin($id);
 		}
@@ -25,6 +27,12 @@
 		public function showOneItem($id){
 			$this->view = "showOneItem";
 			$this->checkLogin($id);
+		}
+
+		public function searchSoftware($name){
+			$this->view = "index";
+			$this->flag = "search";
+			$this->checkLogin($name);
 		}
 
 		public function showLogin(){
@@ -51,14 +59,19 @@
 
 			switch ($this->view) {
 				case 'index':
-					$data["software"] = $software->getSoftware();
+					if ($this->flag == "search") {
+						$data["software"] = $software->searchSoftware($id);
+					}else{
+						$data["software"] = $software->getSoftware();
+					}
 					require_once "view/softwareIndex.php";
+
 					break;
 				case 'showOneItem':
 					$data["software"] = $software->getSoftwareId($id);
 					require_once "view/software.php";
 					break;
-				
+		
 				case 'showSoftwareCRUD':
 					require_once "view/softwareCRUD.php";
 					break;
