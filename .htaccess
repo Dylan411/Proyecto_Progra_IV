@@ -1,0 +1,3 @@
+Options All -Indexes
+ErrorDocument 404 http://localhost/Git/Proyecto/view/error.html
+ErrorDocument 403 http://localhost/Git/Proyecto/view/error.html

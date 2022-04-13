@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type = "text/javascript" src="view/script.js"></script>
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="view/style.css">
+    <link href="view/style.css"
+      rel="stylesheet" type="text/css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Tiki Store</title>
@@ -88,7 +89,7 @@
                     }
 
                 ?>
-                    <a href= <?php echo "index.php?c=SoftwareController&a=" . $function ?> >
+                    <a href= <?php echo "index.php?c=UserController&a=" . $function ?> >
                         <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
                         <span onclick="togglePopup()" class="text nav-text"><?php echo $status; ?></span>
                     </a>
@@ -148,7 +149,7 @@
                 <div class="signup-link">Not a member? <a onclick = "login()">Signup now</a></div>
           </form>
           
-          <form action="index.php?c=SoftwareController&a=signup" method="POST" class="login">
+          <form action="index.php?c=userController&a=signup" method="POST" class="login">
           <div class="field">
               <input type="text" name="userName" placeholder="Username" required>
             </div>

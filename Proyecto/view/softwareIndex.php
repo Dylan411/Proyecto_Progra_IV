@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type = "text/javascript" src="view/script.js"></script>
+    <script src="view/script.js"></script>
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="view/style.css">
     <!----===== Boxicons CSS ===== -->
@@ -18,7 +18,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="/Proyecto/Images/logo.png" alt="">
+                    <img src="/Git/Proyecto/Images/logo.png" alt="">
                 </span>
                 <div class="text logo-text">
                     <span class="name"><?php 
@@ -62,14 +62,14 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="view/showPDF.php">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Acccount</span>
                         </a>
                     </li>
                     <?php 
                     if(isset($_SESSION['nombreUsuario'])){
-                        if ($result["test"]["tipoUsuario"] == 'Admin') {
+                        if ($result["Role"]["tipoUsuario"] == 'Admin') {
                             echo '<li class="nav-link">';
                             echo '<a href="index.php?c=SoftwareController&a=softwareCRUD">';
                             echo "<i class='bx bx-data icon'></i>";
@@ -77,14 +77,14 @@
                             echo '</a>';
                             echo '</li>';
                             echo '<li class="nav-link">';
-                            echo '<a href="index.php?c=SoftwareController&a=userCRUD">';
+                            echo '<a href="index.php?c=UserController&a=userCRUD">';
                             echo "<i class='bx bx-user-check icon'></i>";
                             echo '<span class="text nav-text">User</span>';
                             echo '</a>';
                             echo '</li>';
                         }
                     }else{
-                        $result["test"]["tipoUsuario"] = "";
+                        $result["Role"]["tipoUsuario"] = "";
                     }
                     ?>
                 </ul>
@@ -102,7 +102,7 @@
                         $function = "showLogin";
                     }
                     ?>
-                    <a href= <?php echo "index.php?c=SoftwareController&a=" . $function ?> >
+                    <a href= <?php echo "index.php?c=UserController&a=" . $function ?> >
                         <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
                         <span onclick="togglePopup()" class="text nav-text"><?php echo $status;?></span>
                     </a>
@@ -116,8 +116,8 @@
                     <span class="mode-text text">Dark mode
                     </span>
                     <div  class="toggle-switch" >
-                        <span  class="switch">
-                            <script>mode()</script>
+                        <span class="switch" id="switch">
+                        <script >mode()</script>
                         </span>
                     </div>
                 </li>
@@ -142,6 +142,8 @@
             </div>
         </div>
     </section>
+
+    
 </body>
 </html>
 

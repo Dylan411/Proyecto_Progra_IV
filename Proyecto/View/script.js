@@ -45,6 +45,10 @@ function login(){
     });
 }
 
+function home(){
+    window.location = "index.php?c=SoftwareController&a=index";
+}
+
 
 
 

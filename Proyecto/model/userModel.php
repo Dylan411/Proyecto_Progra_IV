@@ -52,6 +52,7 @@ class User{
             $query = $this->db->query("SELECT tipoUsuario FROM usuarios WHERE nombreUsuario= '$user'");
             $result = $query->fetch_assoc();
             return $result;
+            echo "<script>console.log( 'Excepción capturada: ".  $result ."' );</script>";
         }catch (Exception $th) {
             echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
         }
