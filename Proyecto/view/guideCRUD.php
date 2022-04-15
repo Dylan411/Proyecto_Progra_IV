@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type = "text/javascript" src="view/script.js"></script>
-    <!----======== CSS ======== -->
     <link rel="stylesheet" href="view/style.css">
-    <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Tiki Store</title>
 </head>
@@ -130,21 +128,22 @@
         <table class="styled-table-user">
             <thead>
                 <tr>
-                    <th class = "left">Nombre Usuario</th>
-                    <th >Contraseña</th>
-                    <th >Email</th>
-                    <th >Tipo Usuario</th>
+                    <th class = "left">Id</th>
+                    <th >Nombre</th>
+                    <th >Ruta</th>
+                    <th >Imagen</th>
+                    <th >Descripcion</th>
                     <th ></th>
                     <th class = "right"></th>
                 </tr>
             </thead>
             <tbody>
                     <tr>
-                        <form action="index.php?c=UserController&a=insertUser"  method="post">
+                        <form action="index.php?c=GuideController&a=insertGuide"  method="post">
                         <td><input type="text" name="nombre"  required></td>
-                        <td><input type="text" name="contrasenia" required></td>
-                        <td><input type="text" name="email" required></td>
-                        <td><input type="text" name="tipoUsuario" required></td>
+                        <td><input type="text" name="ruta" required></td>
+                        <td><input type="text" name="imagen" required></td>
+                        <td><input type="text" name="descripcion" required></td>
                         <td>
                             <a><button>Insert</button></a>
                         </td>
@@ -159,19 +158,20 @@
                         document.getElementById(formid).submit();
                     }
                     </script>';
-                    foreach ($data["user"] as $item){
+                    foreach ($data["guide"] as $item){
                         echo "<tr>";
                         echo '
-                            <td><input name="nombre['.$item["nombreUsuario"].']" value="'.$item["nombreUsuario"].'" /></td>
-                            <td><input name="contrasenia['.$item["nombreUsuario"].']" value="'.$item["contrasenia"].'" /></td>
-                            <td><input name="email['.$item["nombreUsuario"].']" value="'.$item["email"].'" /></td>
-                            <td><input name="tipo['.$item["nombreUsuario"].']" value="'.$item["tipoUsuario"].'"/></td>
+                            <td><input name="id['.$item["id"].']" value="'.$item["id"].'" /></td>
+                            <td><input name="nombre['.$item["id"].']" value="'.$item["nombre"].'" /></td>
+                            <td><input name="ruta['.$item["id"].']" value="'.$item["ruta"].'" /></td>
+                            <td><input name="imagen['.$item["id"].']" value="'.$item["imagen"].'" /></td>
+                            <td><input name="descripcion['.$item["id"].']" value="'.$item["descripcion"].'"/></td>
                         ';
                         echo "  <td>";
-                        echo '<input type="button" value="Update" onClick="actionForm(this.form.id, \'index.php?c=UserController&a=updateUser\')" />';
+                        echo '<input type="button" value="Update" onClick="actionForm(this.form.id, \'index.php?c=GuideController&a=updateGuide\')" />';
                         echo "  </td>";
                         echo "  <td>";
-                        echo '<input type="button" value="Delete" onClick="actionForm(this.form.id, \'index.php?c=UserController&a=deleteUser&id='.$item["nombreUsuario"].'\')" />';
+                        echo '<input type="button" value="Delete" onClick="actionForm(this.form.id, \'index.php?c=GuideController&a=deleteGuide&id='.$item["id"].'\')" />';
                         echo "  </td>";
                         echo "</tr>";                       
                     }

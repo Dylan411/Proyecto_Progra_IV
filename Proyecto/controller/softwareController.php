@@ -53,6 +53,8 @@
 
 		public function insertSoftware(){
 			$software = new software();
+			$userController = new UserController();
+			$userModel = new User();
 			$nameForm = $_POST['nombre'];
 			$descriptionForm = $_POST['descripcion'];
 			$idiomaForm = $_POST['idioma'];
@@ -62,10 +64,8 @@
 			$tamanioForm = $_POST['tamanio'];
 			$novedadesForm = $_POST['novedades'];
 			$categoriaForm = $_POST['categoria'];
-			$software->insertSoftware('21',$nameForm,$descriptionForm,$idiomaForm,$desarolladorForm,$imagenForm,$anioCreacionForm,$tamanioForm,$novedadesForm,$categoriaForm);
-			if(isset($_SESSION['nombreUsuario'])){
-				$result["Role"] = $userModel->getType($userController->getCurrentUser());
-			}
+			$software->insertSoftware($nameForm,$descriptionForm,$idiomaForm,$desarolladorForm,$imagenForm,$anioCreacionForm,$tamanioForm,$novedadesForm,$categoriaForm);
+			$result["Role"] = $userModel->getType($userController->getCurrentUser());
 			$data["software"] = $software->getSoftware();
 			require_once "view/softwareCRUD.php";
 		}

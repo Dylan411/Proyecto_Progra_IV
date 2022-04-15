@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type = "text/javascript" src="view/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="view/style.css">
     <!----===== Boxicons CSS ===== -->
@@ -53,9 +55,9 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">My Acccount</span>
+                        <a href="index.php?c=GuideController&a=index">
+                            <i class='bx bxs-file-pdf icon' style='color:#ffffff'  ></i>
+                            <span class="text nav-text">Guides</span>
                         </a>
                     </li>
                     <?php 
@@ -71,6 +73,12 @@
                             echo '<a href="index.php?c=UserController&a=userCRUD">';
                             echo "<i class='bx bx-user-check icon'></i>";
                             echo '<span class="text nav-text">User</span>';
+                            echo '</a>';
+                            echo '</li>';
+                            echo '<li class="nav-link">';
+                            echo '<a href="index.php?c=GuideController&a=guideCRUD">';
+                            echo "<i class='bx bx-user-check icon'></i>";
+                            echo '<span class="text nav-text">GuideCRUD</span>';
                             echo '</a>';
                             echo '</li>';
                         }
@@ -140,19 +148,19 @@
             </thead>
             <tbody>
                     <tr>
-                        <form action="index.php?c=SoftwareController&a=insertSoftware"  method="post">
+                        <form id="form" action="index.php?c=SoftwareController&a=insertSoftware"  method="post">
                         <td contenteditable= 'false'>#</td>
-                        <td><input type="text" name="nombre"  required></td>
-                        <td><input type="text" name="descripcion" required></td>
-                        <td><input type="text" name="idioma" required></td>
-                        <td><input type="text" name="desarollador" required></td>
-                        <td><input type="text" name="imagen" required></td>
-                        <td><input type="text" name="anioCreacion" required></td>
-                        <td><input type="text" name="tamanio" required></td>
-                        <td><input type="text" name="novedades" required></td>
-                        <td><input type="text" name="categoria" required></td>
+                        <td><input id= "nom" type="text" name="nombre"  required></td>
+                        <td><input id= "des" type="text" name="descripcion" required></td>
+                        <td><input id= "idi" type="text" name="idioma" required></td>
+                        <td><input id= "des" type="text" name="desarollador" required></td>
+                        <td><input id= "img" type="file" name="imagen" required></td>
+                        <td><input id= "ani" type="text" name="anioCreacion" required></td>
+                        <td><input id= "tam" type="text" name="tamanio" required></td>
+                        <td><input id= "nov" type="text" name="novedades" required></td>
+                        <td><input id= "cat" type="text" name="categoria" required></td>
                         <td>
-                            <a><button>Insert</button></a>
+                            <input class="insert" type="submit" onclick="confirmation();" value="Insert"/>
                         </td>
                         </form>
                     </tr>

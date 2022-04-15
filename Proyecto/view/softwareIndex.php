@@ -62,9 +62,9 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="view/showPDF.php">
-                            <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">My Acccount</span>
+                        <a href="index.php?c=GuideController&a=index">
+                            <i class='bx bxs-file-pdf icon' style='color:#ffffff'  ></i>
+                            <span class="text nav-text">Guides</span>
                         </a>
                     </li>
                     <?php 
@@ -80,6 +80,12 @@
                             echo '<a href="index.php?c=UserController&a=userCRUD">';
                             echo "<i class='bx bx-user-check icon'></i>";
                             echo '<span class="text nav-text">User</span>';
+                            echo '</a>';
+                            echo '</li>';
+                            echo '<li class="nav-link">';
+                            echo '<a href="index.php?c=GuideController&a=guideCRUD">';
+                            echo "<i class='bx bx-user-check icon'></i>";
+                            echo '<span class="text nav-text">GuideCRUD</span>';
                             echo '</a>';
                             echo '</li>';
                         }

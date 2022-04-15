@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type = "text/javascript" src="view/script.js"></script>
+    <script src="view/script.js"></script>
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="view/style.css">
     <!----===== Boxicons CSS ===== -->
@@ -18,7 +18,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="/Proyecto/Images/logo.png" alt="">
+                    <img src="/Git/Proyecto/Images/logo.png" alt="">
                 </span>
                 <div class="text logo-text">
                     <span class="name"><?php 
@@ -41,7 +41,16 @@
 
                 <li class="search-box">
                     <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
+                    <input id = "search" type="text"  placeholder="Search...">
+                    <script>
+                            var input = document.getElementById('search');
+                            input.addEventListener('keyup', function(event) {
+                            if (event.keyCode === 13) {
+                                event.preventDefault();
+                                window.location = "index.php?c=GuideController&a=searchGuide&id=" + input.value;
+                            }
+                            });
+                        </script>
                 </li>
 
                 <ul class="menu-links">
@@ -98,7 +107,6 @@
                         $status = "Sign In";
                         $function = "showLogin";
                     }
-                    
                     ?>
                     <a href= <?php echo "index.php?c=UserController&a=" . $function ?> >
                         <i onclick="togglePopup()" class='bx bx-log-out icon'></i>
@@ -111,11 +119,11 @@
                         <i class='bx bx-moon icon moon'></i>
                         <i class='bx bx-sun icon sun'></i>
                     </div>
-                    <span class="mode-text text">Dark mode</span>
-
-                    <div class="toggle-switch">
-                    <span  class="switch">
-                            <script>mode()</script>
+                    <span class="mode-text text">Dark mode
+                    </span>
+                    <div  class="toggle-switch" >
+                        <span class="switch" id="switch">
+                        <script >mode()</script>
                         </span>
                     </div>
                 </li>
@@ -127,59 +135,22 @@
 
     <section class="home">
         <div class="text">Tiki Store</div>
-        <table class="styled-table-user">
-            <thead>
-                <tr>
-                    <th class = "left">Nombre Usuario</th>
-                    <th >Contraseña</th>
-                    <th >Email</th>
-                    <th >Tipo Usuario</th>
-                    <th ></th>
-                    <th class = "right"></th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <form action="index.php?c=UserController&a=insertUser"  method="post">
-                        <td><input type="text" name="nombre"  required></td>
-                        <td><input type="text" name="contrasenia" required></td>
-                        <td><input type="text" name="email" required></td>
-                        <td><input type="text" name="tipoUsuario" required></td>
-                        <td>
-                            <a><button>Insert</button></a>
-                        </td>
-                        </form>
-                        
-                    </tr>
-                    <form id="user"  method="post">
-                    <?php
-                    echo '<script>
-                    function actionForm(formid, act){
-                        document.getElementById(formid).action=act;
-                        document.getElementById(formid).submit();
-                    }
-                    </script>';
-                    foreach ($data["user"] as $item){
-                        echo "<tr>";
-                        echo '
-                            <td><input name="nombre['.$item["nombreUsuario"].']" value="'.$item["nombreUsuario"].'" /></td>
-                            <td><input name="contrasenia['.$item["nombreUsuario"].']" value="'.$item["contrasenia"].'" /></td>
-                            <td><input name="email['.$item["nombreUsuario"].']" value="'.$item["email"].'" /></td>
-                            <td><input name="tipo['.$item["nombreUsuario"].']" value="'.$item["tipoUsuario"].'"/></td>
-                        ';
-                        echo "  <td>";
-                        echo '<input type="button" value="Update" onClick="actionForm(this.form.id, \'index.php?c=UserController&a=updateUser\')" />';
-                        echo "  </td>";
-                        echo "  <td>";
-                        echo '<input type="button" value="Delete" onClick="actionForm(this.form.id, \'index.php?c=UserController&a=deleteUser&id='.$item["nombreUsuario"].'\')" />';
-                        echo "  </td>";
-                        echo "</tr>";                       
-                    }
-                    ?>
-                    </form>
-            </tbody>
-
-    </table>
+        <div class="gallery">
+            <?php
+                foreach ($data["guide"] as $item) {
+                    echo "<div class='content'>";
+                    echo "<img class= 'products' src='" . $item["imagen"] . "'>";
+                    echo "<h3>" . $item["nombre"] . "</h3>";
+                    echo "<button class='download'><a href='index.php?c=GuideController&a=showOneItem&id=".$item["id"]."'>Download</button>";
+                    echo "</div>";
+                }
+            ?>
+            </div>
+        </div>
     </section>
+
+    
 </body>
 </html>
+
+

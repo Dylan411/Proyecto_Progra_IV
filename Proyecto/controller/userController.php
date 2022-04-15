@@ -126,7 +126,9 @@
 			$userController = new UserController();
 			$userModel = new User();
 			$userModel->deleteUser($id);
-			$result["Role"] = $userModel->getType($userController->getCurrentUser());
+			if(isset($_SESSION['nombreUsuario'])){
+				$result["Role"] = $userModel->getType($userController->getCurrentUser());
+			}
 			$data["user"] = $userModel->getUser();
 			require_once "view/userCRUD.php";
 		}
@@ -142,7 +144,9 @@
 				$TipoUsuario = $_POST["tipo"][$nom];
 				$userModel->updateUser($NombreUsuario,$Contrasenia,$Email,$TipoUsuario);
 			}
-			$result["Role"] = $userModel->getType($userController->getCurrentUser());
+			if(isset($_SESSION['nombreUsuario'])){
+				$result["Role"] = $userModel->getType($userController->getCurrentUser());
+			}
 			$data["user"] = $userModel->getUser();
 			require_once "view/userCRUD.php";
 		}

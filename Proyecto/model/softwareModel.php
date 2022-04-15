@@ -34,10 +34,10 @@ class Software
 			return $row;
 	}	
 
-	public function insertSoftware($id,$Nombre,$Descripcion,$Idioma,$Desarollador,$Imagen,$Año,$Tamaño,$Novedades,$Categoria){
+	public function insertSoftware($Nombre,$Descripcion,$Idioma,$Desarollador,$Imagen,$Año,$Tamaño,$Novedades,$Categoria){
 		try {
-            $query = $this->db->query("INSERT INTO software (id,nombre,descripcion,idioma,desarollador,cantidadDescargas,imagen,anioCreacion,tamanio,novedades,categoria)
-            VALUES ('$id','$Nombre','$Descripcion','$Idioma','$Desarollador','0','$Imagen','$Año','$Tamaño','$Novedades','$Categoria')");
+            $query = $this->db->query("INSERT INTO software (nombre,descripcion,idioma,desarollador,cantidadDescargas,imagen,anioCreacion,tamanio,novedades,categoria)
+            VALUES ('$Nombre','$Descripcion','$Idioma','$Desarollador','0','Images/$Imagen','$Año','$Tamaño','$Novedades','$Categoria')");
         }catch (Exception $th) {
             echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
         }

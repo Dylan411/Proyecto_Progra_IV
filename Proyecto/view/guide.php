@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type = "text/javascript" src="view/script.js"></script>
@@ -23,11 +23,12 @@
                 <div class="text logo-text">
                     <span class="name"><?php 
                     if(isset($_SESSION['nombreUsuario'])){
-                        echo $_SESSION['nombreUsuario'];
+                        echo $_SESSION['nombreUsuario'] ;
                     }else{
                         echo "Welcome";
                     }
-                    ?> </span>
+                    
+                    ?></span>
                 </div>
             </div>
 
@@ -125,61 +126,25 @@
 
     </nav>
 
-    <section class="home">
-        <div class="text">Tiki Store</div>
-        <table class="styled-table-user">
-            <thead>
-                <tr>
-                    <th class = "left">Nombre Usuario</th>
-                    <th >Contraseña</th>
-                    <th >Email</th>
-                    <th >Tipo Usuario</th>
-                    <th ></th>
-                    <th class = "right"></th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <form action="index.php?c=UserController&a=insertUser"  method="post">
-                        <td><input type="text" name="nombre"  required></td>
-                        <td><input type="text" name="contrasenia" required></td>
-                        <td><input type="text" name="email" required></td>
-                        <td><input type="text" name="tipoUsuario" required></td>
-                        <td>
-                            <a><button>Insert</button></a>
-                        </td>
-                        </form>
-                        
-                    </tr>
-                    <form id="user"  method="post">
-                    <?php
-                    echo '<script>
-                    function actionForm(formid, act){
-                        document.getElementById(formid).action=act;
-                        document.getElementById(formid).submit();
-                    }
-                    </script>';
-                    foreach ($data["user"] as $item){
-                        echo "<tr>";
-                        echo '
-                            <td><input name="nombre['.$item["nombreUsuario"].']" value="'.$item["nombreUsuario"].'" /></td>
-                            <td><input name="contrasenia['.$item["nombreUsuario"].']" value="'.$item["contrasenia"].'" /></td>
-                            <td><input name="email['.$item["nombreUsuario"].']" value="'.$item["email"].'" /></td>
-                            <td><input name="tipo['.$item["nombreUsuario"].']" value="'.$item["tipoUsuario"].'"/></td>
-                        ';
-                        echo "  <td>";
-                        echo '<input type="button" value="Update" onClick="actionForm(this.form.id, \'index.php?c=UserController&a=updateUser\')" />';
-                        echo "  </td>";
-                        echo "  <td>";
-                        echo '<input type="button" value="Delete" onClick="actionForm(this.form.id, \'index.php?c=UserController&a=deleteUser&id='.$item["nombreUsuario"].'\')" />';
-                        echo "  </td>";
-                        echo "</tr>";                       
-                    }
-                    ?>
-                    </form>
-            </tbody>
-
-    </table>
-    </section>
+    <section class="homesoftware">
+       
+        <?php
+        echo "<div id='container'>";
+	    echo "<div class='product-details'>";
+	    echo "<h1>" . $data["guide"]["nombre"] . "</h1>";
+		echo "<p class='information'>'". $data["guide"]["descripcion"]. "'</p>";
+        echo "<div class='control'>";
+	    echo "<button class='btn'>";
+        echo "<span class='buy'><a href='index.php?c=GuideController&a=showOneItemPDF&id=".$data["guide"]["id"]."'>Download</span>";
+        echo "</button>";
+        echo "</div>";
+        echo "</div>";
+        echo "<div class='product-image'>";
+        echo "<img src='" . $data["guide"]["imagen"] . "'>";
+        echo "</div>";
+        echo "</div>";
+    ?>
+</section>
 </body>
+<span class='buy' onclick="window.location='view/showPDF.php'">Download</span>
 </html>
