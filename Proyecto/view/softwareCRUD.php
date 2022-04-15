@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type = "text/javascript" src="view/script.js"></script>
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="view/style.css">
     <!----===== Boxicons CSS ===== -->
@@ -120,7 +121,78 @@
 
     <section class="home">
         <div class="text">Tiki Store</div>
-        
+        <table class="styled-table-software">
+            <thead>
+                <tr>
+                    <th class = "left">Id</th>
+                    <th >Nombre</th>
+                    <th >Descripcion</th>
+                    <th >Idioma</th>
+                    <th >Desarollador</th>
+                    <th >Imagen</th>
+                    <th >Año</th>
+                    <th >Tamaño</th>
+                    <th >Novedades</th>
+                    <th >Categoria</th>
+                    <th ></th>
+                    <th class = "right"></th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <form action="index.php?c=SoftwareController&a=insertSoftware"  method="post">
+                        <td contenteditable= 'false'>#</td>
+                        <td><input type="text" name="nombre"  required></td>
+                        <td><input type="text" name="descripcion" required></td>
+                        <td><input type="text" name="idioma" required></td>
+                        <td><input type="text" name="desarollador" required></td>
+                        <td><input type="text" name="imagen" required></td>
+                        <td><input type="text" name="anioCreacion" required></td>
+                        <td><input type="text" name="tamanio" required></td>
+                        <td><input type="text" name="novedades" required></td>
+                        <td><input type="text" name="categoria" required></td>
+                        <td>
+                            <a><button>Insert</button></a>
+                        </td>
+                        </form>
+                    </tr>
+                    <form id="software"  method="post">
+                    <?php
+                        echo '<script>
+                            function actionForm(formid, act){
+                                document.getElementById(formid).action=act;
+                                document.getElementById(formid).submit();
+                            }
+                        </script>';     
+
+                    foreach ($data["software"] as $item){
+                        echo "<tr>";
+                        echo '
+                            <td><input name="id['.$item["id"].']" value="'.$item["id"].'" /></td>
+                            <td><input name="nombre['.$item["id"].']" value="'.$item["nombre"].'" /></td>
+                            <td><input name="descripcion['.$item["id"].']" value="'.$item["descripcion"].'" /></td>
+                            <td><input name="idioma['.$item["id"].']" value="'.$item["idioma"].'"/></td>
+                            <td><input name="desarollador['.$item["id"].']" value="'.$item["desarollador"].'" /></td>
+                            <td><input name="imagen['.$item["id"].']" value="'.$item["imagen"].'" /></td>
+                            <td><input name="anioCreacion['.$item["id"].']" value="'.$item["anioCreacion"].'" /></td>
+                            <td><input name="tamanio['.$item["id"].']" value="'.$item["tamanio"].'"/></td>
+                            <td><input name="novedades['.$item["id"].']" value="'.$item["novedades"].'" /></td>
+                            <td><input name="categoria['.$item["id"].']" value="'.$item["categoria"].'"/></td>
+                        ';
+                        echo "  <td>";
+                        echo '<input type="button" value="Update" onClick="actionForm(this.form.id, \'index.php?c=SoftwareController&a=updateSoftware\')" />';
+                        echo "  </td>";
+                        echo "  <td>";
+                        echo '<input type="button" value="Delete" onClick="actionForm(this.form.id, \'index.php?c=SoftwareController&a=deleteSoftware&id='.$item["id"].'\')" />';
+                        echo "  </td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                    </form>
+            </tbody>
+
+    </table>
     </section>
 </body>
 </html>
+

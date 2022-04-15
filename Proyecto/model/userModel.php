@@ -1,11 +1,12 @@
 <?php
 class User{   
     private $db;
-	private $username;
+
     
 
     public function __construct(){
         $this->db = Connection::conx();
+        $this->user = array();
     }
 	
     public function userExistsLogin($user,$pass){
@@ -52,7 +53,6 @@ class User{
             $query = $this->db->query("SELECT tipoUsuario FROM usuarios WHERE nombreUsuario= '$user'");
             $result = $query->fetch_assoc();
             return $result;
-            echo "<script>console.log( 'Excepción capturada: ".  $result ."' );</script>";
         }catch (Exception $th) {
             echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
         }
@@ -62,6 +62,41 @@ class User{
         try {
             $query = $this->db->query("INSERT INTO usuarios (nombreUsuario,email,contrasenia,tipoUsuario)
             VALUES ('$user','$email','$password','User')");
+        }catch (Exception $th) {
+            echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
+        }
+    }
+
+    public function getUser(){
+		$sql = "SELECT * FROM usuarios";
+		$result = $this->db->query($sql);
+		while($row = $result->fetch_assoc()){
+			$this->user[] = $row;
+		}
+		return $this->user;
+	}
+
+    public function insertUserCRUD($NombreUsuario,$Contrasenia,$Email,$TipoUsuario){
+		try {
+            $query = $this->db->query("INSERT INTO usuarios (nombreUsuario,contrasenia,email,tipoUsuario)
+            VALUES ('$NombreUsuario','$Contrasenia','$Email','$TipoUsuario')");
+        }catch (Exception $th) {
+            echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
+        }
+	}
+
+    public function deleteUser($user){
+        try{
+            $query = $this->db->query("DELETE from usuarios WHERE nombreUsuario= '$user'");
+        }catch (Exception $th) {
+            echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
+        }
+    }
+
+    public function updateUser($NombreUsuario,$Contrasenia,$Email,$TipoUsuario){
+        try{
+            $query = $this->db->query("UPDATE usuarios SET  contrasenia='$Contrasenia', email='$Email',
+            tipoUsuario='$TipoUsuario' WHERE nombreUsuario= '$NombreUsuario'");
         }catch (Exception $th) {
             echo "<script>console.log( 'Excepción capturada: ".  $th->getMessage() ."' );</script>";
         }

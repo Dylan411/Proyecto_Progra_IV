@@ -129,7 +129,7 @@
             <div class="slider-tab"></div>
         </div>
         <div class="form-inner">
-          <form action="index.php?c=SoftwareController&a=index" method="POST" class="login">
+          <form action="index.php?c=UserController&a=checkLogin" method="POST" class="login">
                 <div class="field">
                     <input type="text" name="username" placeholder="Username" required>
                 </div>
@@ -145,7 +145,7 @@
                 <div class="field btn">
                     <div class="btn-layer"></div>
                     <input type="submit" value="Login">
-                </div>
+                    </div>
                 <div class="signup-link">Not a member? <a onclick = "login()">Signup now</a></div>
           </form>
           

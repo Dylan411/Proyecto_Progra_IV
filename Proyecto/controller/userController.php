@@ -96,10 +96,54 @@
 		}
 
 		public function userCRUD(){
+			$software = new software();
 			$userModel = new User();
+			$data["user"] = $userModel->getUser();
 			if(isset($_SESSION['nombreUsuario'])){
 				$result["Role"] = $userModel->getType($this->getCurrentUser());
 			}
+			require_once "view/userCRUD.php";
+		}
+
+		public function insertUser(){
+			$software = new software();
+			$userModel = new User();
+			$userController = new UserController();
+			$nameForm = $_POST['nombre'];
+			$passForm = $_POST['contrasenia'];
+			$emailForm = $_POST['email'];
+			$tipoForm = $_POST['tipoUsuario'];
+			$userModel->insertUserCRUD($nameForm,$passForm,$emailForm,$tipoForm);
+			if(isset($_SESSION['nombreUsuario'])){
+				$result["Role"] = $userModel->getType($userController->getCurrentUser());
+			}
+			$data["user"] = $userModel->getUser();
+			require_once "view/userCRUD.php";
+		}
+
+		public function deleteUser($id){
+			$software = new software();
+			$userController = new UserController();
+			$userModel = new User();
+			$userModel->deleteUser($id);
+			$result["Role"] = $userModel->getType($userController->getCurrentUser());
+			$data["user"] = $userModel->getUser();
+			require_once "view/userCRUD.php";
+		}
+
+		public function updateUser(){
+			$software = new software();
+			$userController = new UserController();
+			$userModel = new User();
+			foreach ($_POST['nombre'] as $nom ) {
+				$NombreUsuario = $_POST["nombre"][$nom];
+				$Contrasenia = $_POST["contrasenia"][$nom];
+				$Email = $_POST["email"][$nom];
+				$TipoUsuario = $_POST["tipo"][$nom];
+				$userModel->updateUser($NombreUsuario,$Contrasenia,$Email,$TipoUsuario);
+			}
+			$result["Role"] = $userModel->getType($userController->getCurrentUser());
+			$data["user"] = $userModel->getUser();
 			require_once "view/userCRUD.php";
 		}
 	}
