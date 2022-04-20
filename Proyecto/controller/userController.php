@@ -66,6 +66,9 @@
 			$software = new software();
 			$this->closeSession();
 			$data["software"] = $software->getSoftware();
+			if(isset($_SESSION['nombreUsuario'])){
+				$result["Role"] = $userModel->getType($userController->getCurrentUser());
+			}
 			require_once "view/softwareIndex.php";
 		}
 

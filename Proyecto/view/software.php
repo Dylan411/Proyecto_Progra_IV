@@ -135,7 +135,7 @@
 		echo "<p class='information'>'". $data["software"]["descripcion"]. "'</p>";
         echo "<div class='control'>";
 	    echo "<button class='btn'>";
-        echo "<span class='buy'>Download</span>";
+        echo "<button class='buy'><a href='https://www.microsoft.com/es-cr'>Download</button>";
         echo "</button>";
         echo "</div>";
         echo "</div>";
